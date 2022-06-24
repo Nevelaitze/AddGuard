@@ -16,6 +16,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    Game_00.h \
     LIBCHAR.h \
     Prog_00.h \
     Prog_01.h \

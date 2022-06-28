@@ -3,7 +3,7 @@
 #include <LIBCHAR.h>
 
 
-void printsimbol(void)
+ void printsimbol(void)
 {
     char j = 0;
 
@@ -27,6 +27,13 @@ void printsimbol(void)
 void game_00()
 {
 
+
+    LIB_CHAR_Public_Get_TXT();
+
+
+
+
+    return;
     char * var_str = NULL;
     char var_term_len = 80;
 

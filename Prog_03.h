@@ -75,7 +75,6 @@ int prog_8(void)
 
 return 8;
 }
-
 int Prog_03(void)
 {
   char var_q=0;
@@ -103,5 +102,52 @@ int Prog_03(void)
   }
   return 2;
 }
+
+
+void  Prog_06_printsimbol(void)
+{
+   char j = 0;
+
+   while(1)
+   {
+
+       int i = 80;
+
+       while(i>0)
+       {
+           putchar(j);
+           i--;
+       }
+       LIB_CHAR_WAIT_ENTER();
+       j++;
+
+   }
+}
+void  Prog_09_fun_return_str(void)
+{
+   while (1)
+   {
+       char * var_str = NULL;
+       char var_term_len = 80;
+
+       var_str = LIB_CHAR_Public_Get_String();
+
+       char var_str_len = LIB_CHAR_Public_Str_Lenght(var_str);
+
+       char abc = var_term_len - var_str_len;
+       if(abc < 0) LIB_CHAR_Public_Put_String((char*)"ERROR !!! ::: var_str_len > 80");
+
+       for(int i = 0; i< abc; i ++) putchar(' ');
+       LIB_CHAR_Public_Put_String(var_str);
+   }
+
+}
+
+
+
+
+
+
+
 
 #endif // PROG_03_H

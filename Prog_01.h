@@ -6,31 +6,20 @@ char fun_Add(char var_1,char var_2)
     char var_summ =  var_1 + var_2;
     return var_summ;
 }
-
 char fun_Mull(char var_1,char var_2)
 {
     char var_Mull = var_1 * var_2;
     return var_Mull;
 }
-
 char fun_dev(char var_1,char var_2)
 {
     char var_dev = var_1 / var_2;
     return var_dev;
 }
-
-
-
-
-
-
 char func_Solved_Optimized(char var_a,char var_b,char var_c,char var_d,char var_e,char var_g,char var_h,char var_I, char var_x,char var_z)
 {
     return fun_dev( fun_Mull(var_e,fun_Mull(4,fun_Add(fun_Add(fun_Mull(var_I,fun_Add(var_a,var_b)),fun_Add(var_c,var_d)),fun_Mull(var_h,fun_Mull(fun_Add(var_z,var_x),fun_Add(var_z,var_x)))))), var_g);
 }
-
-
-
 char func_Solved(char var_a,char var_b,char var_c,char var_d,char var_e,char var_g,char var_h,char var_I, char var_x,char var_z)
 {
     char var_ab = fun_Add(var_a,var_b);
@@ -56,7 +45,6 @@ char func_Solved(char var_a,char var_b,char var_c,char var_d,char var_e,char var
 
     return var_e4Iabcdhzxzxg;
 }
-
 int Prog_01()
 {
     char var_1 = func_Solved(-1,2,3,64,125,6,7,8,9,33);

@@ -27,7 +27,6 @@ char fun_t(char var_a1 ,char var_a2 )
     char ot;
     return ot;
 }
-
 int Prog_00(void)
 {
     char var_a1[] = "qwer";

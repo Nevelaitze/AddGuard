@@ -18,7 +18,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Game_00.h \
     LIBCHAR.h \
+    LIBINT.h \
     Prog_00.h \
     Prog_01.h \
+    Prog_01_копия.h \
     Prog_02.h \
-    Prog_03.h
+    Prog_03.h \
+    Prog_04_копия.h

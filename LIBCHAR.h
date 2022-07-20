@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-
-#define BOOL char
 #define FALSE 0
 #define TRUE 1
 #define EOFF '\0'
@@ -47,6 +45,24 @@ void  LIB_CHAR_Public_Putchar_Bits(char byte)
          number = number-1;
          fun_private_print_bit(byte,number);
          if (number==0) break;
+     }
+}
+void  LIB_CHAR_Public_Putchar_Bits_Znak(char byte)
+{
+
+     char number = 1*sizeof (byte) ;
+     while (1)
+     {
+         if (byte == 00100000) putchar(' ');
+         if (byte == 00101100) putchar(',');
+         if (byte == 00101110) putchar('.');
+
+         if (byte != 00100000||00101100||00101110)
+             putchar (number);
+
+
+          number = number-1;
+          if (number==0) break;
      }
 }
 char  fun_private_dimention_of_number(char var_c)
@@ -115,6 +131,10 @@ int   LIB_CHAR_Public_Str_Lenght(char *var_str)
     }
 
 }
+void  LIB_CHAR_Put_Char(char var_c)
+{
+    putchar(var_c);
+}
 char* LIB_CHAR_Public_Append_Char_To_String(char* var_str,char var_bukva)
 {
     if(var_str == NULL)
@@ -181,120 +201,146 @@ void  LIB_CHAR_help(void)
 }
 char* LIB_CHAR_Public_Get_String(void)
 {
-
     char* var_str = NULL;
-
-
     while(1)
     {
         char c = getchar();
         if(c == '\n') break;
         var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,c);
-        printf("----->%s\n",var_str);
+    }
+    var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,' ');
+    var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,EOFF);
+    return var_str;
+}
+int   LIB_CHAR_Public_CMP_String (char* var_str1, char* var_str2 )
+{
+   int var_str_len1= LIB_CHAR_Public_Str_Lenght(var_str1);
+   int var_str_len2= LIB_CHAR_Public_Str_Lenght(var_str2);
+   if(var_str_len1 != var_str_len2 ) return FALSE;
+   char i = 0;
+    while(1)
+    {
+        if(var_str1[i]!=var_str2[i]) return FALSE;
+        i++;
+        if(var_str1[i],var_str2[i] == '\0')
+        break;
+
     }
 
-    return var_str;
 
+
+    return TRUE;
 }
 char* LIB_CHAR_Public_Append_Sting_To_String(char * var_string_1, char* var_string_2)
- {
+{
+
      if(var_string_2 == NULL) return var_string_1;
+
+
 
      int var_len = LIB_CHAR_Public_Str_Lenght(var_string_2);
      int i = 0;
      while(1)
      {
- var_string_1 = LIB_CHAR_Public_Append_Char_To_String(var_string_1, var_string_2[i]);
+         var_string_1 = LIB_CHAR_Public_Append_Char_To_String(var_string_1, var_string_2[i]);
          if(i==var_len) break;
          i++;
      }
 
     return var_string_1;
  }
-
 int   LIB_CHAR_Public_TXT_Lenght(char **var_TXT)
- {
-     if(var_TXT == NULL)
-     {
-         return -1;
-     }
-
-     int i = 0;
-     while(1)
-     {
-         ///if (var_TXT[i] == EOF)
-         {
-             return i;
-         }
-         i = i+1;
-     }
-
- }
-
-
-
-char** LIB_CHAR_Public_Get_TXT(void)
- {
-
-     char** var_TXT = NULL;
-
-     printf("=====================\n");
-     char *var_str = NULL;
-     var_str = LIB_CHAR_Public_Get_String();
-     LIB_CHAR_Public_Put_String(var_str);
-     printf("=====================\n");
-
-
-     while(1)
-     {
-         char *var_str = NULL;
-         var_str = LIB_CHAR_Public_Get_String();
-         LIB_CHAR_Public_Put_String(var_str);
-
-         ///var_str = LIB_CHAR_Free_Staring(var_str);
-
-
-         ///if(c == EOFF) break;
-         ///var_TXT = LIB_CHAR_Public_Append_Char_To_String(var_TXT,c);
-     }
-
-     return var_TXT;
-
- }
-
-char** LIB_CHAR_Public_Put_TXT(char** var_TXT,char * var_str)
- {
-     unsigned int i = 0;
-     while(1)
-     {
-           var_str == NULL;
-           return  var_TXT;
-
-              ///if(var_TXT[i] == EOF)
-              {
-               break;
-              }
-         }
-
-    while (1)
     {
-      if(i < 50) putchar(*var_TXT[i]);
 
-      i = i + 1;
+        if(var_TXT == NULL) return -1;
 
-      if (i == 50) putchar('\n');
+        int var_TXT_len = 0 ;
 
-      if (i == 51)
+        while (1)
         {
-          i = 0;
-          break;
+
+            if(var_TXT[var_TXT_len][0] == EOFF) break;
+            var_TXT_len ++;
         }
+       return var_TXT_len;
      }
-     return var_TXT;
- }
+char**LIB_CHAR_Public_Append_String_To_Text(char** var_TXT,char* var_str)
+    {
+     int var_TXT_len = LIB_CHAR_Public_TXT_Lenght(var_TXT);
+     if(var_TXT_len == -1)var_TXT_len = 0;
+     int var_str_len = LIB_CHAR_Public_Str_Lenght(var_str);
+     if(var_str_len == -1)
+     {
+        var_str_len=0;
+        var_str=LIB_CHAR_Public_Append_Char_To_String(var_str,'\0');
+     }
+     if(var_TXT == NULL);
+     {
+     var_TXT=(char**)realloc(var_TXT,(2)*sizeof(char*));
+     var_TXT[0] = (char*)calloc(2,sizeof (char*));
+     var_TXT[1] = (char*)calloc(2,sizeof (char*));
+     var_TXT[0][0]='\0';
+     var_TXT[1][0]= EOFF;
+     }
+
+            return var_TXT;
+        }
+char**LIB_CHAR_Public_Get_TXT(void)
+        {
+
+                char** var_TXT = NULL;
+                char *var_str = NULL;
+
+                while(1)
+                {
+                    var_str = LIB_CHAR_Public_Get_String();
+                    if(LIB_CHAR_Public_CMP_String(var_str,(char*) "EOFF "))
+                    {
+                        var_str = LIB_CHAR_Free_Staring(var_str);
+                        var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,EOFF);
+                    }
+
+                    if(var_str[0] == EOFF) break;
+
+                    var_TXT = LIB_CHAR_Public_Append_String_To_Text(var_TXT,var_str);
 
 
-#endif // LIBCHAR_H
+
+
+                    var_str = LIB_CHAR_Free_Staring(var_str);
+
+                }
+
+                var_str = LIB_CHAR_Free_Staring(var_str);
+                return var_TXT;
+
+        }
+char**LIB_CHAR_Public_Put_TXT(char** var_TXT)
+     {
+        if (var_TXT == NULL) return 0;
+        int i = 0;
+        while (1)
+        {
+            if (var_TXT[i][0] == EOFF)break;
+            LIB_CHAR_Public_Put_String(var_TXT[i]);
+            putchar('\n');
+            i++;
+
+            return var_TXT;
+        }
+
+
+
+
+
+
+
+
+         return var_TXT;
+     }
+
+
+    #endif // LIBCHAR_H
 
 
 

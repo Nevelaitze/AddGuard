@@ -265,26 +265,39 @@ int   LIB_CHAR_Public_TXT_Lenght(char **var_TXT)
        return var_TXT_len;
      }
 char**LIB_CHAR_Public_Append_String_To_Text(char** var_TXT,char* var_str)
-    {
-     int var_TXT_len = LIB_CHAR_Public_TXT_Lenght(var_TXT);
-     if(var_TXT_len == -1)var_TXT_len = 0;
-     int var_str_len = LIB_CHAR_Public_Str_Lenght(var_str);
-     if(var_str_len == -1)
-     {
-        var_str_len=0;
-        var_str=LIB_CHAR_Public_Append_Char_To_String(var_str,'\0');
-     }
-     if(var_TXT == NULL);
-     {
-     var_TXT=(char**)realloc(var_TXT,(2)*sizeof(char*));
-     var_TXT[0] = (char*)calloc(2,sizeof (char*));
-     var_TXT[1] = (char*)calloc(2,sizeof (char*));
-     var_TXT[0][0]='\0';
-     var_TXT[1][0]= EOFF;
-     }
+{
+        int var_TXT_len = LIB_CHAR_Public_TXT_Lenght(var_TXT);
+        ///printf("LEN NEXT[%d]\n",var_TXT_len);
 
-            return var_TXT;
+
+        if(var_TXT_len == -1)var_TXT_len = 0;
+        int var_str_len = LIB_CHAR_Public_Str_Lenght(var_str);
+        if(var_str_len == -1)
+        {
+            var_str_len=0;
+            var_str=LIB_CHAR_Public_Append_Char_To_String(var_str,'\0');
         }
+        if(var_TXT == NULL)
+        {
+            var_TXT=(char**)realloc(var_TXT,(2)*sizeof(char*));
+            var_TXT[0] = (char*)calloc(2,sizeof (char*));
+            var_TXT[1] = (char*)calloc(2,sizeof (char*));
+            var_TXT[0][0]='\0';
+            var_TXT[1][0]= EOFF;
+        }
+        else
+        {
+            var_TXT=(char**)realloc(var_TXT,(var_TXT_len + 2)*sizeof(char*));
+            var_TXT[var_TXT_len] = (char*)calloc(2,sizeof (char*));
+            var_TXT[var_TXT_len + 1] = (char*)calloc(2,sizeof (char*));
+            var_TXT[var_TXT_len][0]='\0';
+            var_TXT[var_TXT_len + 1][0]= EOFF;
+        }
+
+        var_TXT[var_TXT_len] = LIB_CHAR_Public_Append_Sting_To_String(var_TXT[var_TXT_len],var_str);
+
+        return var_TXT;
+}
 char**LIB_CHAR_Public_Get_TXT(void)
         {
 
@@ -323,10 +336,9 @@ char**LIB_CHAR_Public_Put_TXT(char** var_TXT)
         {
             if (var_TXT[i][0] == EOFF)break;
             LIB_CHAR_Public_Put_String(var_TXT[i]);
-            putchar('\n');
             i++;
 
-            return var_TXT;
+
         }
 
 

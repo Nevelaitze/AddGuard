@@ -152,7 +152,6 @@
         printf("5");
         return var_str;
     }
-
     char* fun_get_string_echo_binary_1(void)
     {
         char* var_str = NULL;
@@ -175,11 +174,7 @@
         var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,EOFF);
         return var_str;
     }
-
-
-
-
-     char* getstringfromstring (char* str,int colvobukavstart,int colvobukavend)
+    char* getstringfromstring (char* str,int colvobukavstart,int colvobukavend)
      {
 
          int len = LIB_CHAR_Public_Str_Lenght(str);
@@ -189,8 +184,8 @@
          if (len < 0)  return str;
 
 
-         if (colvobukavstart > len)  return str;
-         if (colvobukavend > len)  return str;
+         if (colvobukavstart >= len)  return NULL;
+         if (colvobukavend >= len)  return NULL;
 
 
          if (colvobukavstart > colvobukavend)  return str;
@@ -210,102 +205,238 @@
      }
 
 
-    void kostratov(char* var_str)
+                    /*//  void kostratov(char* var_str)
+                        // {
+
+                        //       while (1)
+
+                        // {
+                        //
+                        //      char w = 0;
+                        //    char q = 20;
+                        //
+                        //      char dlinaobrezka = q - w;
+                        //
+                        //      char* var_str = NULL;
+                        //
+                        //      char len =   LIB_CHAR_Public_Str_Lenght(var_str);
+                        //
+                        //
+                        //      char ostatok = len - dlinaobrezka;
+                        //    var_str = LIB_CHAR_Public_Get_String();
+                        //  char* var_stroka = getstringfromstring (var_str, w, q);
+
+                        //char i = ostatok;
+
+                        //char p = '\0';
+
+                        //char* stroka =  getstringfromstring(var_str,i,p);
+
+                        //  LIB_CHAR_Public_Put_String((char*)"\n");
+
+                        //LIB_CHAR_Public_Put_String(var_stroka);
+                        //char* var_stroka1 = getstringfromstring (stroka, w, q);
+                        //  LIB_CHAR_Public_Put_String(var_stroka1);
+
+                        //if( LIB_CHAR_Public_Str_Lenght(var_str)< q)break;
+                        //  }
+                        // }*/
+
+    char* fun_kolvo_probelov(char interval)
+    {
+    char*  var_str = NULL ;
+
+    char c = ' ';
+
+    while(1)
     {
 
-            while (1)
+       if(interval > 0) ;
 
+       var_str = LIB_CHAR_Public_Append_Char_To_String(var_str,c);
+
+       interval =  interval -1;
+
+       if(interval == 0)  break;
+    }
+    return var_str;
+    }
+
+    void test(void)
+    {
+             int interval_front = 20;
+
+             int start = 0;
+
+             int end = 40;
+
+            ///  char** var_TXT = NULL;
+
+             char* var_str_otstup = fun_kolvo_probelov(interval_front);
+
+             int var_int_start = start;
+
+             int var_int_end = end;
+
+             int  i = 0;
+
+             while (1)
+             {
+            printf("%d] %s\n",i,"------------------->1");
+                    char* var_str_input = LIB_CHAR_Public_Get_String();
+            printf("%d] %s\n",i,"------------------->2");
+                    char* var_str_buffer = getstringfromstring (var_str_input, var_int_start, var_int_end);
+            printf("%d] %s\n",i,"------------------->3");
+                    int var_int_lenght_of_inputString =  LIB_CHAR_Public_Str_Lenght(var_str_input);
+            printf("%d] %s\n",i,"------------------->4");
+                    char* var_str_print = LIB_CHAR_Public_Append_Sting_To_String(var_str_otstup,var_str_buffer);
+            printf("%d] %s\n",i,"------------------->5");
+
+
+             printf("%d] %s\n",i,var_str_print);
+            /// var_TXT = LIB_CHAR_Public_Append_String_To_Text(var_TXT,var_str_print);
+
+            ///  LIB_CHAR_Public_Put_TXT(var_TXT);
+
+            printf("%d] %s\n",i,"------------------->6");
+                    var_str_print = LIB_CHAR_Free_Staring(var_str_print);
+            printf("%d] %s\n",i,"------------------->7");
+                   var_str_buffer = LIB_CHAR_Free_Staring(var_str_buffer);
+            printf("%d] %s\n",i,"------------------->8");
+                    var_int_start += end;
+
+                    var_int_end += end;
+
+                    i++;
+            printf("%d] %s\n",i,"------------------->9");
+                    if(var_int_end >= var_int_lenght_of_inputString)
+            printf("%d] %s\n",i,"------------------->10");
+                     {
+                         char* var_str_buffer = getstringfromstring (var_str_input, var_int_start, -1);
+            printf("%d] %s\n",i,"------------------->11");
+                         printf("%d] %s\n",i,var_str_print);
+
+                         break;
+                         printf("%d] %s\n",i,"------------------->12");
+
+
+                     }
+
+
+                    //char* var_str2 =  getstringfromstring(var_str,var_end, -1);
+
+                   // int var_str_2_Len = LIB_CHAR_Public_Str_Lenght(var_str2);
+
+                   // LIB_CHAR_Public_Put_String(var_str1); LIB_CHAR_Public_Put_String((char*)"\n");
+
+                  //  var_str1 = LIB_CHAR_Free_Staring(var_str1);
+
+                  //  var_str  = getstringfromstring (var_str2, var_start, var_end);
+
+                  //  if (var_str_2_Len == 0) break;
+
+
+
+     }
+
+
+    exit(0);
+
+    ///-128 ---> А ---->-112
+    /// -127-----Б----->-111
+    /// -126-----В----->-110
+
+        char c = 0;
+        while(1)
         {
+        c = getchar();
 
-        char w = 0;
-        char q = 20;
+        printf("%d %c\n",c , c);
 
-        char dlinaobrezka = q - w;
-
-        char* var_str = NULL;
-
-        char len =   LIB_CHAR_Public_Str_Lenght(var_str);
-
-
-        char ostatok = len - dlinaobrezka;
-
-
-        var_str = LIB_CHAR_Public_Get_String();
-
-        char* var_stroka = getstringfromstring (var_str, w, q);
-
-        char i = ostatok;
-
-        char p = '\0';
-
-        char* stroka =  getstringfromstring(var_str,i,p);
-
-            LIB_CHAR_Public_Put_String((char*)"\n");
-
-            LIB_CHAR_Public_Put_String(var_stroka);
-        char* var_stroka1 = getstringfromstring (stroka, w, q);
-            LIB_CHAR_Public_Put_String(var_stroka1);
-
-        if( LIB_CHAR_Public_Str_Lenght(var_str)< q)break;
-            }
+        }
+        exit(0);
     }
 
 
-     void test(void)
-     {
 
-         char var_start = 0;
+    void test_2(void)
+    {
+        //////////////////////////////////////////////////////INPUT DATA START
+        char* var_str = LIB_CHAR_Public_Get_String();
+        char* var_LongString = NULL; for(int i = 1; i<800; i++) var_LongString = LIB_CHAR_Public_Append_Sting_To_String(var_LongString,var_str);
+        int var_Left_border = 15;
+        int var_Right_border = 28;
 
-         char var_end = 20;
-
-         char* var_str = LIB_CHAR_Public_Get_String();
-
-
-
-         while (1)
-         {
-
-                char* var_str1 = getstringfromstring (var_str, var_start, var_end);
-
-                char* var_str2 =  getstringfromstring(var_str,var_end, -1);
-
-                int var_str_2_Len = LIB_CHAR_Public_Str_Lenght(var_str2);
-
-                LIB_CHAR_Public_Put_String(var_str1);   LIB_CHAR_Public_Put_String((char*)"\n");
+        //////////////////////////////////////////////////////INPUT DATA END
 
 
 
-                var_str1 = LIB_CHAR_Free_Staring(var_str1);
 
-                var_str1  = getstringfromstring (var_str2, var_start, var_end);
+        char* var_Left_Space = NULL;
+        char* var_Buffer_Space = NULL;
+        char* var_Right_Space = NULL;
+        char* var_Itogo_String = NULL;
+        char** var_Text = NULL;
 
 
-                if(var_str_2_Len == 0) break;
-         }
+        for(int i = 0; i<var_Left_border; i++) var_Left_Space = LIB_CHAR_Public_Append_Char_To_String(var_Left_Space,' ');
+        for(int i = 0; i<var_Right_border; i++) var_Right_Space = LIB_CHAR_Public_Append_Char_To_String(var_Right_Space,' ');
 
 
-   exit(0);
+        int var_Width = 80 - (var_Left_border + var_Right_border);
+        if (var_Width<0) exit(-1);
 
-       ///-128 ---> А ---->-112
-       /// -127-----Б----->-111
-       /// -126-----В----->-110
+        int var_start = 0;
+        int var_end = var_start + var_Width;
 
-            char c = 0;
-            while(1)
-            {
-            c = getchar();
 
-            printf("%d %c\n",c , c);
 
-            }
-            exit(0);
-}
+        while(1)
+        {
+
+
+        var_Buffer_Space = getstringfromstring(var_LongString,var_start,var_end);
+
+        if(var_Buffer_Space == NULL) break;
+ ///printf("%s,\n",var_Buffer_Space);
+
+        var_start += var_Width;
+        var_end   += var_Width;
+
+
+
+         var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Left_Space);
+         var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Buffer_Space);
+        var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Right_Space);
+
+
+
+
+
+        var_Text = LIB_CHAR_Public_Append_String_To_Text(var_Text,var_Itogo_String);
+        ///printf("[%d]      %s\n",LIB_CHAR_Public_TXT_Lenght(var_Text),var_Itogo_String);
+
+        var_Itogo_String = LIB_CHAR_Free_Staring(var_Itogo_String);
+        var_Buffer_Space = LIB_CHAR_Free_Staring(var_Buffer_Space);
+
+
+        }
+
+        printf("[%d]",LIB_CHAR_Public_TXT_Lenght(var_Text));
+        LIB_CHAR_Public_Put_TXT(var_Text);
+
+
+    }
+
+
+
+
 
 
  void game_00()
  {
-     test();
-
+     test_2();
+        getchar();
      LIB_CHAR_Public_Put_String((char*)"\n\t\t\t=================================\n");
      LIB_CHAR_Public_Put_String((char*)"\t\t\t=     GAME_NAME_VERSION_0.0     =\n");
      LIB_CHAR_Public_Put_String((char*)"\t\t\t=================================\n");

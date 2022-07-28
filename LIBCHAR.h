@@ -350,7 +350,116 @@ char**LIB_CHAR_Public_Put_TXT(char** var_TXT)
 
          return var_TXT;
      }
+char* LIB_CHAR_Getstring_Fromstring (char* str,int colvobukavstart,int colvobukavend)
+ {
 
+     int len = LIB_CHAR_Public_Str_Lenght(str);
+
+     if (colvobukavstart < 0)  return str;
+
+     if (len < 0)  return str;
+
+
+     if (colvobukavstart >= len)  return NULL;
+     if (colvobukavend >= len)  return NULL;
+
+
+     if (colvobukavstart > colvobukavend)  return str;
+
+     if (colvobukavend < 0) colvobukavend = len;
+
+
+
+    char* string = NULL;
+
+    for(int i = colvobukavstart; i< colvobukavend; i++)
+    {
+        string = LIB_CHAR_Public_Append_Char_To_String(string,str[i]);
+    }
+
+    return string;
+ }
+char**LIB_CHAR_Text_Format(char* var_LongString, int var_Left_border,int var_Right_border, char var_l, char var_r)
+{
+    //////////////////////////////////////////////////////INPUT DATA START
+
+    ///char c = getchar();
+    ///char* var_LongString = NULL; for(int i = 1; i<800; i++) var_LongString = LIB_CHAR_Public_Append_Char_To_String(var_LongString,c);
+    ///int var_Left_border = 15;
+    ////int var_Right_border = 28;
+
+    //////////////////////////////////////////////////////INPUT DATA END
+
+    char* var_Left_Space = NULL;
+    char* var_Buffer_Space = NULL;
+    char* var_Right_Space = NULL;
+    char* var_Itogo_String = NULL;
+    char** var_Text = NULL;
+
+
+    for(int i = 0; i<var_Left_border; i++) var_Left_Space = LIB_CHAR_Public_Append_Char_To_String(var_Left_Space,var_l);
+    for(int i = 0; i<var_Right_border; i++) var_Right_Space = LIB_CHAR_Public_Append_Char_To_String(var_Right_Space,var_r);
+
+
+    int var_Width = 80 - (var_Left_border + var_Right_border);
+    if (var_Width<0) exit(-1);
+
+    int var_start = 0;
+    int var_end = var_start + var_Width;
+
+
+
+    while(1)
+    {
+
+
+    var_Buffer_Space = LIB_CHAR_Getstring_Fromstring(var_LongString,var_start,var_end);
+
+    if(var_Buffer_Space == NULL) break;
+
+    var_start += var_Width;
+    var_end   += var_Width;
+
+
+
+     var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Left_Space);
+     var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Buffer_Space);
+     var_Itogo_String = LIB_CHAR_Public_Append_Sting_To_String(var_Itogo_String,var_Right_Space);
+
+
+
+
+
+     var_Text = LIB_CHAR_Public_Append_String_To_Text(var_Text,var_Itogo_String);
+
+
+     var_Itogo_String = LIB_CHAR_Free_Staring(var_Itogo_String);
+     var_Buffer_Space = LIB_CHAR_Free_Staring(var_Buffer_Space);
+
+
+    }
+
+     ///printf("[%d]",LIB_CHAR_Public_TXT_Lenght(var_Text));
+     ///LIB_CHAR_Public_Put_TXT(var_Text);
+
+
+    var_Left_Space = LIB_CHAR_Free_Staring(var_Left_Space);
+   var_Buffer_Space = LIB_CHAR_Free_Staring(var_Buffer_Space);
+    var_Right_Space =  LIB_CHAR_Free_Staring(var_Right_Space);
+    var_Itogo_String =  LIB_CHAR_Free_Staring(var_Itogo_String);
+
+
+
+
+    return var_Text;
+
+}
+
+
+void LIB_CHAR_Public_Clear_Screen(void)
+{
+    system("cls");
+}
 
     #endif // LIBCHAR_H
 
